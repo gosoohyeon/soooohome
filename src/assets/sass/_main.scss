@@ -11,10 +11,8 @@ body {
 
     &__inr {
         margin: 0 auto;
+        padding: rem(140) 0;
         max-width: $pcSize;
-        height: rem(1000);
-        background-position: 17% 28%;
-        background-repeat: no-repeat;
         &:after {
             content:'';
             display: inline-block;
@@ -31,26 +29,41 @@ body {
             color: rgba(34,211,238,1);
         }
     }
-    &__link--notion {
+    &__link {
         display: inline-block;
         padding: 0 20px;
         height: 40px;
         box-sizing: border-box;
         line-height: 42px;
+        border: 1px solid #84b3ed;
         border-radius: 5px;
         font-size: 18px;
         color: rgba(209,213,219,1);
-        background-color: rgba(31,41,55,1);
         transition: background .3s;
         &:hover {
-            background: rgba(55,65,81,1);
+            background-color: rgb(#0f61b5,.2);
+        }
+
+        & + & {
+            margin-left: rem(30);
         }
     }
+    &__intro {
+        margin-top: rem(100);
+        font-size: rem(38);
+        line-height: 1.5em;
+        letter-spacing: 0.01em;
+        text-align: left;
+        color: #22d3ee;
+        text-shadow: 0px 0px 2px #2b6e78;
+    }
     h1 {
-        margin-bottom: rem(150,1);;
+        padding-bottom: rem(400);
         font-size: rem(48,1);
         line-height: 1.5em;
         color: #fff;
+        background-position: 50% 80%;
+        background-repeat: no-repeat;
     }
 }
 
