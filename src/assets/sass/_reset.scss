@@ -1,0 +1,58 @@
+@charset "UTF-8";
+@import 'variable';
+
+
+//  reset 
+html, body, header, footer, nav, section, article, aside, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, form, fieldset, legend, caption, blockquote, input, button, select, textarea, button {margin:0; padding:0;}
+body {min-width:$mobileSize; text-align:left; border:0 none;}
+html {
+    overflow-y: scroll;
+    font-family:$fontfamily; 
+    font-family: sans-serif;
+    font-size:$defFontsize; 
+    min-width:320px;
+    line-height:$defLineHeight; 
+    color:$defFontColor;
+    // -webkit-tap-highlight-color:rgba(27, 99, 184, .05); // 탭영역
+}
+header, footer, nav, section, article, aside {display:block;}
+ul, ol {list-style-type:none;}
+fieldset {border:none;}
+legend {display:none;}
+table {table-layout:fixed; border-collapse:collapse; border-spacing:0;}
+table caption {line-height:0; font-size:0;}
+address,em,i {font-style:normal;}
+ruby rt {font-size:1em;}
+hr {display:none;}
+img {border:0; vertical-align:top;}
+a {text-decoration:none; outline:none; color:$defFontColor;}
+// a:hover {text-decoration:underline;}
+input, textarea, button, select {font-family:$fontfamily; font-size:$defFontsize;}
+button {border:0 none; background:none; overflow:visible; outline:none; cursor:pointer;}
+button, input[type=text], input[type=password], input[type=tel], input[type=number], input[type=button], input[type=submit] {-webkit-appearance:none; -moz-appearance:none; appearance:none; border:0 none; border-radius:0; background:none; overflow:visible;}
+textarea {border-radius:0;}
+button::-moz-focus-inner {padding:0; border:0;}
+button:disabled {cursor:default;}
+::-webkit-input-placeholder {color:$placeholder;}
+::-moz-placeholder {color:$placeholder;opacity:1;}
+:-ms-input-placeholder {color:$placeholder;}
+// ::-webkit-scrollbar { display: none; }
+input::-ms-clear,
+input::-ms-reveal {display: none; width : 0; height: 0;}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration { display: none; }
+
+
+
+.blind {
+    position: absolute;
+    overflow: hidden;
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    border: none;
+    clip: rect(0, 0, 0, 0)
+}

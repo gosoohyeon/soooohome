@@ -1,0 +1,351 @@
+@charset 'UTF-8';
+@import 'variable';
+@import 'mixin';
+
+body {
+    background: #e9e9e9;
+}
+.header {
+    text-align: center;
+    background-color: #428fec;
+
+    &__inr {
+        margin: 0 auto;
+        max-width: $pcSize;
+        height: rem(1000);
+        background-position: 17% 28%;
+        background-repeat: no-repeat;
+        &:after {
+            content:'';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+    }
+    &__cont {
+        display: inline-block;
+        vertical-align: middle;
+
+        &--text1 {
+            font-weight: bold;
+            color: rgba(34,211,238,1);
+        }
+    }
+    &__link--notion {
+        display: inline-block;
+        padding: 0 20px;
+        height: 40px;
+        box-sizing: border-box;
+        line-height: 42px;
+        border-radius: 5px;
+        font-size: 18px;
+        color: rgba(209,213,219,1);
+        background-color: rgba(31,41,55,1);
+        transition: background .3s;
+        &:hover {
+            background: rgba(55,65,81,1);
+        }
+    }
+    h1 {
+        margin-bottom: rem(150,1);;
+        font-size: rem(48,1);
+        line-height: 1.5em;
+        color: #fff;
+    }
+}
+
+.nav {
+    position: sticky;
+    top:0;
+    left:0;
+    z-index: 10;
+    overflow: hidden;
+    background: #000;
+    &__inr {
+        margin: -1px -1px 0 -1px;
+        max-width: $pcSize;
+        // display: flex;
+    }
+    &__item {
+        padding: rem(20) 0;
+        width: 33.33%;
+        height: rem(88);
+        box-sizing: border-box;
+        font-size: rem(32);
+        color: #fff;
+        border-top:1px solid #555;
+
+        &+& {
+            border-left:1px solid #555;
+        }
+        &:last-child {
+            border-right:1px solid #555;
+        }
+        
+        &:hover {
+            span {
+                color:$pointcolor;
+            }
+        }
+        &.on {
+            span {
+                color:$pointcolor;
+                &:after {
+                    content:'';
+                    display: block;
+                    position: absolute;
+                    bottom:0;
+                    left:0;
+                    width: 100%;
+                    height: rem(6);
+                    background: $pointcolor;
+                }
+            }
+        }
+        &Notion {
+            // background: pink;
+        }
+        &.-pjSubject {
+            display: none;
+            position: relative;
+            color: #aaa;
+            vertical-align: middle;
+            min-width: 150px;
+            &:after {
+                content:'►';
+                display: inline-block;
+                margin-left: rem(30);
+                vertical-align: middle;
+                height: rem(50);
+                box-sizing: border-box;
+            }
+        }
+    }
+    
+    @include respond-to(pc) {
+        &__inr {
+            margin: 0 auto;
+            display: flex;
+        }
+        &__item {
+            flex:1;
+            text-align: center;
+            width: auto;
+            border-top:none;
+            &.-pjSubject { display: inline-block;}
+        }
+    }
+}
+
+
+.main {
+    &__inr {
+        overflow: hidden;
+        margin: 0 auto;
+        max-width: $pcSize;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+
+.card {
+    &List {
+        margin: rem(60) 0 rem(100) -10px;
+        width: 100%;
+    }
+    position: relative;
+    float: left;
+    margin: 10px 0 0 10px;
+    padding: rem(30);
+    width: calc(33.33% - 10px);
+    box-sizing: border-box;
+    background: #fff;
+    transform: scale(1);
+    transition: box-shadow .5s;
+
+    @include respond-to(mobile) {
+        margin-left: 0;
+        width: 100%;
+    }
+    @include respond-to(pc) {
+        height: rem(180,1);
+    }
+
+    &.card--top {
+        padding: rem(50);
+        height: auto !important;
+    }
+
+    &:hover {
+        box-shadow: 0 0 10px 0 rgb(0 0 0 / 9%);
+    }
+    &__badgeBox {
+        display: inline-block;
+        margin-right: 10px;
+        
+        @include respond-to(pc) {
+            display: block;
+            margin-bottom: 10px;
+        }
+        @include respond-to(mobile) {}
+        .card--top & {
+            position: absolute;
+            top:rem(30);
+            left:rem(30);
+        }
+    }
+    &__img {
+        float: left;
+        display: block;
+        margin-right: rem(30);
+        width:rem(240);
+        height: rem(190);
+        border-radius: rem(20);
+        border:1px solid #eee;
+        background-color: #eee;
+        background-size: cover;
+        background-position: 50% 0%;
+        
+        .card--top & {
+            float: none;
+            margin: 0 auto 10px;
+            padding-bottom: 50%;
+            width: 80%;
+            height: 0;
+        }
+
+    }
+    &__text {
+        padding: rem(10) 0;
+        min-height: 95px;
+        line-height: 1;
+        @include respond-to(mobile) {
+            float: left;
+            min-height: auto;
+            width: calc(100% - #{rem(240 + 30)});
+            
+            .card--top & {
+                width: 100%;
+                float: none;
+            }
+        }
+    
+    }
+    &__subject {
+        display: inline;
+        margin-bottom: 10px;
+        font-size: rem(28);
+        line-height: 1.4em;
+        color: #333;
+        flex:1;
+        
+        @include respond-to(pc) {
+            display: block;
+            max-height: 38px;
+            @include ellipsisV(2);
+        }
+
+        // &:after {
+        //     content:'';
+        //     display: inline-block;
+        //     vertical-align: middle;
+        //     height: 100%;
+        // }
+
+        // span {
+        //     display: inline-block;
+        //     vertical-align: middle;
+        // }
+    }
+    &__subinfo {
+        overflow: hidden;
+        font-size: rem(24);
+        line-height: 1.2em;
+        margin-top: rem(16);
+    }
+    &__part {
+        float: left;
+        color: #5d5d5d;
+    }
+    &__date {
+        float: right;
+        color: #a0a0a0;
+    }
+    &__btn {
+        overflow: hidden;
+        margin-right: 5px;
+        padding: 10px 5px 5px ;
+        color: $pointcolor;
+        &:hover {
+            font-weight: bold;
+            &:after {
+                width:rem(30);
+            }
+        }
+        &:after {
+            content:'>';
+            display: inline-block;
+            width:0px;
+            margin-left: 5px;
+            text-align: right;
+            transition: width .5s;
+        }
+    }
+    &__link {
+        font-size: rem(30);
+        color: #d7d5d5;
+        
+        @include respond-to(pc) {
+            display: block;
+            margin: rem(30) 0 0;
+            padding: rem(10) 0;
+            border-top:rem(2) solid #e9e9e9;
+            text-align: right;
+
+        }
+    }
+    &__textNolink {
+    }
+    &__desc {
+        &:not(:empty) {
+            margin-bottom: 10px;
+            height: 32px;
+            font-size: rem(26);
+            color: #555;
+            line-height: 1.3em;
+            @include ellipsisV(2);
+        }
+    }
+}
+
+.badge {
+    display: inline-block;
+    padding: 0 rem(10);
+    min-width:rem(80);
+    height: rem(36);
+    line-height:rem(36);
+    border-radius: rem(6);
+    text-align: center;
+    font-size: rem(24);
+    color: #fff;
+    text-shadow: 0px 0px 2px rgba(0,0,0,.5);
+    &.mobile {
+        background: #74c5d6;
+    }
+    &.pc {
+        background: #e2c00c;
+    }
+    &.rwd {
+        background: #a574d6;
+    }
+    &.promotion {
+        background: #98d674;
+    }
+    &.system {
+        background: #98d674;
+    }
+    &.etc {
+        background: #20c0a0;
+    }
+}

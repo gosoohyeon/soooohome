@@ -1,0 +1,52 @@
+@charset 'UTF-8';
+
+// rem calc
+@function rem($size, $ratio:2) {
+    @return ($size/$ratio)/$rootFontsize + rem;
+}
+
+
+// 썸네일 세로 %구하기 (width:height = 100:x)
+@mixin ratioWidth ($percentW, $width, $height){
+  height:0;
+  padding-bottom: percentage((($height*$percentW)/$width)/100);
+}
+
+// vertical ellipsis
+@mixin ellipsisV($line){
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+}
+
+// c_img 
+@mixin c_img(){
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:50%;
+}
+
+
+@mixin notTextInput(){
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    position: absolute !important;
+}
+
+
+// mediaquery
+@mixin respond-to($media) {
+  @if $media == mobile {
+    @media only screen and (max-width: $tabletSize - 1) { @content; }
+  }
+  @else if $media == tablet {
+    @media only screen and (min-width: $tabletSize) and (max-width: $pcSize - 1) { @content; }
+  }
+  @else if $media == pc {
+    @media only screen and (min-width:  $tabletSize) { @content; }
+  }
+}
