@@ -1,49 +1,40 @@
 <template>
   <div>
-    <nav class="menu">
-      <a>products</a>
-      <a>About</a>
-    </nav>
-
-    <article v-for="(item, idx) in products" :key="item.id">
-      <a @click.prevent="isModal=true; selected = idx">
-        <img :src="item.image" class="room-img">
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.price }} 원</p>
+    <article class="card" v-for="(product, idx) in products" :key="product.id">
+      <a @click.prevent="handleDetail(idx)">
+        <img :src="product.image" alt="" class="room-img">
+        <h1>{{ product.title }}</h1>
+        <p>{{ product.price }}</p>
       </a>
     </article>
 
-
-    <article class="black-bg" v-if="isModal">
-      <div class="white-bg">
-        <h4>{{ products[selected].title }}</h4>
-        <img :src="products[selected].image" class="room-img">
-        <p>{{ products[selected].price }} 원</p>
+    <article class="popup black-bg" v-if="isPopup">
+      <div class="popup__inr white-bg">
+        <img :src="products[selected].image" alt="" class="room-img">
+        <h1>{{ products[selected].title }}</h1>
+        <p>{{ products[selected].price }}</p>
         <p>{{ products[selected].content }}</p>
-        <button @click.prevent="isModal=false">닫기</button>
+        <button @click.prevent="()=>{isPopup = false}">닫기</button>
       </div>
     </article>
-
-
   </div>
 </template>
 
 <script>
 import data from './assets/oneroom.js';
 export default {
-  name: 'App',
-  data(){
+  name : 'App',
+  data () {
     return {
-      isModal : false,
       selected : 0,
+      isPopup : false,
       products : data
     }
   },
-  components: {
-  },
   methods : {
-    increase (idx) {
-      this.products[idx].notify++;
+    handleDetail(i){
+      this.isPopup = true;
+      this.selected = i;
     }
   }
 }
