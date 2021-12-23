@@ -1,5 +1,8 @@
 <template>
   <div>
+
+    <Discount />
+
     <article class="card" v-for="(product, idx) in products" :key="product.id">
       <a @click.prevent="handleDetail(idx)">
         <img :src="product.image" alt="" class="room-img">
@@ -22,8 +25,12 @@
 
 <script>
 import data from './assets/oneroom.js';
+import Discount from './discount.vue';
 export default {
   name : 'App',
+  components : {
+    Discount,
+  },
   data () {
     return {
       selected : 0,
