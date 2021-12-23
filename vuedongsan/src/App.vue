@@ -5,21 +5,21 @@
       <a>About</a>
     </nav>
 
-    <article v-for="(item, idx) in products" :key="idx">
-      <a @click.prevent="isModal=true">
-        <img :src="item.img" class="room-img">
+    <article v-for="(item, idx) in products" :key="item.id">
+      <a @click.prevent="isModal=true; selected = idx">
+        <img :src="item.image" class="room-img">
         <h3>{{ item.title }}</h3>
-        <p>{{ item.price }} 만원</p>
-        <button  @click="increase(idx)">허위매물 신고</button>
-        <span>신고수 : {{item.notify}} 건</span>
+        <p>{{ item.price }} 원</p>
       </a>
     </article>
 
 
     <article class="black-bg" v-if="isModal">
       <div class="white-bg">
-        <h4>상세페이지</h4>
-        <p>상세페이지 내용</p>
+        <h4>{{ products[selected].title }}</h4>
+        <img :src="products[selected].image" class="room-img">
+        <p>{{ products[selected].price }} 원</p>
+        <p>{{ products[selected].content }}</p>
         <button @click.prevent="isModal=false">닫기</button>
       </div>
     </article>
@@ -29,32 +29,14 @@
 </template>
 
 <script>
-
+import data from './assets/oneroom.js';
 export default {
   name: 'App',
   data(){
     return {
       isModal : false,
-      products : [
-        {
-          title : '역삼동원룸',
-          price : 60,
-          notify : 0,
-          img : './assets/room0.jpg'
-        },
-        {
-          title : '천호동원룸',
-          price : 70,
-          notify : 0,
-          img : './assets/room1.jpg'
-        },
-        {
-          title : '마포구원룸',
-          price : 40,
-          notify : 0,
-          img : './assets/room2.jpg'
-        },
-      ]
+      selected : 0,
+      products : data
     }
   },
   components: {
