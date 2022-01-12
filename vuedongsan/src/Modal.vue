@@ -1,18 +1,26 @@
 <template>
     
-    <article class="popup black-bg" v-if="isPopup">
+    <article class="popup black-bg">
       <div class="popup__inr white-bg">
-        <img :src="products[selected].image" alt="" class="room-img">
-        <h1>{{ products[selected].title }}</h1>
-        <p>{{ products[selected].price }}</p>
-        <p>{{ products[selected].content }}</p>
-        <button @click.prevent="()=>{isPopup = false}">닫기</button>
+        <img :src="prods.image" alt="" class="room-img">
+        <h1>{{ prods.title }}</h1>
+        <p>{{ prods.price }}</p>
+        <p>{{ prods.content }}</p>
+        <button @click.prevent="closed">닫기</button>
       </div>
     </article>
 </template>
 <script>
 export default {
-    name : 'Modal'
+    name : 'Modal',
+    props : {
+        prods : Object
+    },
+    methods: {
+        closed(){
+            this.$emit('@close')
+        }
+    },
 }
 </script>
 <style>
