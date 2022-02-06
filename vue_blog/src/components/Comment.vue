@@ -1,0 +1,8 @@
+<template>
+    <div>comment</div>
+</template>
+<script>
+export default {
+    name:'authorå'
+}
+</script>
