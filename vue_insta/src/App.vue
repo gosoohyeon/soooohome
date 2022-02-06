@@ -15,6 +15,8 @@
 
     <button @click="more" v-if="step == 0">more</button>
 
+    <button @click="$store.dispatch('getData')">store 로 더보기</button>
+    {{ $store.state.more }}
 
 
 
@@ -122,16 +124,14 @@ ul {
 .header-button-left {
   color: skyblue;
   float: left;
-  width: 50px;
+  width: 150px;
   padding-left: 20px;
-  cursor: pointer;
   margin-top: 10px;
 }
 .header-button-right {
   color: skyblue;
   float: right;
   width: 50px;
-  cursor: pointer;
   margin-top: 10px;
 }
 .footer {
