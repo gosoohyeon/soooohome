@@ -62,6 +62,11 @@ export default {
       this.newPost.filter = filter
     })
   },
+  computed : {
+    name(){
+      return this.$store.state.name
+    }
+  },
   methods: {
     more(){
       axios.get(`https://codingapple1.github.io/vue/more${this.moreCount}.json`)
