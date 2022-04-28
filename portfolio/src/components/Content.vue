@@ -5,10 +5,10 @@
             
 		<section class="main">
 			<div class="main__inr">
-				<Project v-bind:items="contactlist"/> 
+				<Project v-bind:items="contactlist" v-on:@click="handlePopup" /> 
 			</div>
 		</section>
-
+		<Modal v-bind:item="projectData[activeIdx]" v-on:@close="closePopup" v-if="isPopup"/>
     </div>
 </template>
 
@@ -17,18 +17,21 @@
 	import pjData from '../assets/project.js';
 	import Menu from "./Menu";
 	import Project from "./Project";
+	import Modal from "./Modal";
 	export default {
     
 	components: {
 		Menu, 
 		Project,
-		
+		Modal,
 	},
 	data(){
 		return {
 			contactlist : pjData,
 			projectData : pjData,
-			isProcessing : false
+			isProcessing : false,
+			isPopup : false,
+			activeIdx : 0
 		}
 	},
 	methods: {
@@ -45,6 +48,13 @@
 					return data.type == name
 				})
 			}
+		},
+		handlePopup : function(idx){
+			this.isPopup = true;
+			this.activeIdx = idx;
+		},
+		closePopup : function(){
+			this.isPopup = false;
 		}
 	}
 	// Vue.components('Content',{

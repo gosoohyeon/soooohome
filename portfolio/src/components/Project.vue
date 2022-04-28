@@ -4,6 +4,7 @@
             v-for="(item, idx) in items" 
             :key="idx"
             v-bind:class="['card']"
+            @click.prevent="clickItem(idx)"
         >
             <span class="card__img"  :style="{ backgroundImage: `url(${require('@/assets/images/' + item.imgsrc)})` }"></span>
             <div class="card__text">
@@ -14,7 +15,6 @@
                     </i>
                 </div>
                 <h1 class="card__subject"><span>{{item.subject}}</span></h1>
-                <p class="card__desc">{{item.desc}}</p>
                 <div class="card__subinfo">
                     <span class="card__part">참여도 <b>{{item.part}}%</b></span>
                     <span class="card__date">{{item.date}}</span>
@@ -32,6 +32,11 @@
 export default {
     props: {
         items: { type: Array, default: () => [] }
+    },
+    methods: {
+        clickItem(idx){
+            this.$emit('@click',idx)
+        }
     }
 };
 </script>
