@@ -1,0 +1,36 @@
+$url : '/images/';
+$spriteURL : '/images/sprite/';
+$spriteCache : '?v20210923';
+
+// FONT
+$defFontsize : 16px;
+$defLineHeight : 1.5em;
+$fontfamily: '맑은 고딕',Helvetica,sans-serif !default;
+
+// 공통 좌우 패딩
+$commSidePadding : rem(32);
+
+// 공통 하단여백
+$pageBottomMargin : 180px;
+
+// container common width
+$containerWidth: 1180px;
+
+// media
+$mobileSize : 320px;
+$tabletSize : 768px;
+$pcSize : 1180px;
+
+
+// color
+$pointColor : #0087d5;;
+$dangerColor : #ff0025;
+
+$darkColor : #999999;
+$greyish1 : #8e8e8e;
+
+$placeholder : $greyish1;
+
+.pointColor { color:$pointColor !important; }
+.redColor {color:$dangerColor !important;}
+.darkColor {color:$darkColor !important;}
