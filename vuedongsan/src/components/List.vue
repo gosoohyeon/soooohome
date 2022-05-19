@@ -1,32 +1,30 @@
 <template>
   <div>
-    vuedongsan
-    
-    <transition
-      v-on:after-enter="afterEnter"
-    >
-      <router-view :products="products" class="transition" />
-    </transition>
-    
+List
+    <Discount />
+    <Card 
+      :products="products" 
+    />
   </div>
 </template>
 
 <script>
-import data from './assets/oneroom.js';
+import Discount from './discount.vue';
+import Card from './Card.vue';
 export default {
-  name : 'App',
-  components : {},
+  name : 'List',
+  components : {
+    Discount,
+    Card,
+  },
+  props:{
+      products:Array
+  },
   data () {
     return {
-      products : data,
     }
   },
   methods : {
-    afterEnter: () => {
-      window.scrollTo(0, 0);
-    },
-    afterLeave: () => {
-    }
   }
 }
 </script>

@@ -1,0 +1,85 @@
+
+// rem calc
+@function rem($size, $ratio:2) {
+    @return ($size/$ratio) / $rootFontsize + rem;
+}
+
+// line-height calc
+@function lh($fontSize, $lineHeight) {
+  @return ($lineHeight/$fontSize) + em;
+}
+
+// vertical ellipsis
+@mixin ellipsisV($line){
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+}
+
+@mixin ellipsis(){
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  -o-text-overflow:ellipsis; 
+  word-wrap:normal;
+}
+
+// background image 빈틈없이 세로중앙정렬
+@mixin c_img(){
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:50%;
+}
+
+@mixin txtHidden(){
+  overflow:hidden;
+  display:inline-block;*display:inline; zoom:1;
+  text-indent:-9999px; white-space:nowrap; line-height:0;
+}
+
+@mixin before-middle() {
+  vertical-align: middle;
+  text-align:center;
+  &:before {
+      content:"";
+      display:inline-block;
+      height:100%;
+      width:0;
+      vertical-align: middle;
+  }
+}
+
+@mixin after-middle(){
+  vertical-align: middle;
+  &:after {
+    content:"";
+    display:inline-block;
+    height:100%;
+    width:0;
+    vertical-align: middle;
+  }
+}
+
+// mediaquery
+@mixin respond-to($media) {
+  @if $media == mobile { // mobile
+    @media only screen and (max-width: $tabletSize) { @content; }
+  }
+  @else if $media == tablet { // tablet
+    @media only screen and (min-width: $tabletSize) and (max-width: $pcSize) { @content; }
+  }
+  @else if $media == pc { // pc
+    @media only screen and (min-width: $pcSize) { @content; }
+  }
+}
+
+// design checkbox, radio inputbox
+@mixin InputTextBlind(){
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+}
