@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-list">
 List
     <Discount />
     <Card 
@@ -29,24 +29,12 @@ export default {
 }
 </script>
 
-<style>
-html, body {margin:0;padding:0;}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-* {box-sizing: border-box;}
-.menu {
-  background: darkslateblue;
-  padding: 15px;
-  border-radius: 5px;
-}
-.menu a {
-  color: #fff;
-  padding: 10px;
+<style lang="scss">
+.page-list {
+    overflow: auto;
+    height: 100vh;
+    &.transition {
+    }
 }
  .room-img {
    display: block;

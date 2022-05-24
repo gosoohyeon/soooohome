@@ -20,9 +20,10 @@ export default {
             this.$router.push('/detail/'+id);
 
             const elPos = this.$refs.card[id].offsetTop;
-            console.log(elPos)
-            this.$store.commit('setModalPos', elPos)
-            // this.$emit("@click",i, elPos)
+            this.$store.commit('setModalPos', elPos);
+
+            const curPos = window.scrollY;
+            this.$store.commit('setListBefPos', curPos);
         }
     },
 }

@@ -1,12 +1,7 @@
 <template>
   <div>
-    vuedongsan
     
-    <transition
-      v-on:after-enter="afterEnter"
-    >
       <router-view :products="products" class="transition" />
-    </transition>
     
   </div>
 </template>
@@ -22,10 +17,11 @@ export default {
     }
   },
   methods : {
-    afterEnter: () => {
-      window.scrollTo(0, 0);
+    afterEnter(){
+      var list = document.querySelector('.page-list')
+      // list.scrollTop = this.$store.state.listBefPos;
     },
-    afterLeave: () => {
+    afterLeave(){
     }
   }
 }
