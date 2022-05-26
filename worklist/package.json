@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "fs": "0.0.1-security",
     "node-sass": "^7.0.1",
     "sass-loader": "^12.6.0",
     "vue": "^3.2.13"
@@ -35,9 +36,12 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "vue/multi-word-component-names": ["error", {
-        "ignores": []
-    }]
+      "vue/multi-word-component-names": [
+        "error",
+        {
+          "ignores": []
+        }
+      ]
     }
   },
   "browserslist": [
@@ -45,5 +49,8 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "browser": {
+    "fs": false
+  }
 }
