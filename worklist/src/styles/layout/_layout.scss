@@ -1,3 +1,10 @@
+body {
+    margin: 0 auto;
+    padding: 30px;
+    // min-width: 1000px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
 .status {
     border: 1px solid #000;
 }
@@ -5,5 +12,61 @@
     border: 1px solid #000;
 }
 .group {
-    border: 1px solid #000;
+    margin-top: 30px;
+
+    table {
+        width: 100%;
+        th, td {
+            padding:3px;
+            font-size: 12px;
+            line-height:1.3em;
+            border:1px solid #d0d0d0;
+            vertical-align: middle;
+        }
+    }
+    thead {
+        th {
+            border-color:#aaa;
+            background: #e5e5e5;
+        }
+    }
+    tr {
+        &:hover {
+            background: lighten($color: $pointColor, $amount: 50%);
+            box-shadow: inset 0px 0px 5px rgba($pointColor,.5);
+        }
+    }
+    
+}
+.col-ID {
+    position: relative;
+    a {
+        color: darken($pointColor, 20%);
+        text-decoration: none;
+        text-underline-position: under;
+        &:hover {
+            color: darken($color:$pointColor, $amount:0);
+            text-decoration: underline;
+        }
+    }
+}
+.sitemapIframe{
+    position: absolute;
+    top:-300px - 1px;
+    left:calc(50% - 124px);
+    z-index: 1;
+    transform:scale(0.2);transform-origin: left top;
+    background-color: #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,.2);
+}
+.memo {
+    resize: vertical;
+    border:1px solid #eee;
+    min-height: 20px;
+    box-sizing: border-box;
+    vertical-align: top;
+    &:focus {
+        border-color:$pointColor;
+        outline:none;
+    }
 }

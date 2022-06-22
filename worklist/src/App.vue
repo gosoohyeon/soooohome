@@ -13,7 +13,7 @@ import Group from './components/Group.vue'
 import Tab from './components/Tab.vue'
 
 // import iaData from './assets/IA-csv.js'
-import iaData from './assets/IA-json.js'
+// import iaData from './assets/IA-json.js'
 
       const fs = require('fs');
 export default {
@@ -25,12 +25,13 @@ export default {
   },
   data(){
     return{
-      iaList : iaData,
-      iaKeys : [],
+      iaKeys : this.$store.state.iaKeys,
     }
   },
-  mounted(){
-    this.iaKeys = Object.keys(this.iaList[0]);
+  computed :{
+    iaList (){
+      return this.$store.state.iaData
+    },
   },
   methods : {
     handleiaKey(){
