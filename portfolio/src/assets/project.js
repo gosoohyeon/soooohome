@@ -1,4 +1,65 @@
 export default [
+
+    {
+        top : 'card--top',
+        type:"study",
+        subject:"[Vue.js] worklist",
+        desc : "vue로 작업현황을 확인,수정할수 있는 worklist",
+        skill : "Vue, javascript, scss",
+        part : "100",
+        date : "2022.11",
+        link : true,
+        url : "http://gosh.dothome.co.kr/worklist/",
+        imgsrc : ''
+    },
+    {
+        top : 'card--top',
+        type:"study",
+        subject:"[React.js] calendar",
+        desc : "리엑트로 스케줄을 관리할수 있는 달력",
+        skill : "React, javascript, scss",
+        part : "100",
+        date : "2020.12",
+        link : true,
+        url : "http://gosh.dothome.co.kr/calendar/",
+        imgsrc : ''
+    },
+    {
+        top : 'card--top',
+        type:"pc",
+        subject:"[아모레몰] 커머스 커뮤니티",
+        desc : "React프로젝트로 nunjucs로 작업",
+        skill : "Nunjucks, git, HTML, javascript, scss",
+        part : "50",
+        date : "2022.07 ~ 2022.11",
+        link : false,
+        url : "",
+        imgsrc : ''
+    },
+    {
+        top : 'card--top',
+        type:"pc",
+        subject:"[한국투자저축은행] PC, mobile 통합 구축",
+        desc : "웹스퀘어를 이용하여 작업",
+        skill : "WebSquar, HTML, jQuery, css",
+        part : "30",
+        date : "2022.03 ~ 2022.05",
+        link : false,
+        url : "",
+        imgsrc : ''
+    },
+    {
+        top : 'card--top',
+        type:"pc",
+        subject:"[남양인터네셔널] 업무시스템 웹 표준화",
+        desc : "업무시스템 웹 표준화",
+        skill : "HTML, jQuery, css",
+        part : "100",
+        date : "2021.11 ~ 2022.02",
+        link : false,
+        url : "",
+        imgsrc : ''
+    },
     {
         top : 'card--top',
         type:"pc",

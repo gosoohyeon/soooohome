@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 <template>
     
     <article class="popup black-bg">

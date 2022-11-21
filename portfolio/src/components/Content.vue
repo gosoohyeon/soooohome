@@ -1,4 +1,4 @@
-
+/* eslint-disable */ 
 <template id="matchProject">
     <div>
         <Menu v-on:search="searchEvent"/>

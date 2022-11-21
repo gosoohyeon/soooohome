@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 <template>
     <div class="cardList">
         <article 
@@ -6,7 +7,6 @@
             v-bind:class="['card']"
             @click.prevent="clickItem(idx)"
         >
-            <span class="card__img"  :style="{ backgroundImage: `url(${require('@/assets/images/' + item.imgsrc)})` }"></span>
             <div class="card__text">
                 <div class="card__badgeBox">
                     <i v-bind:class="['badge', item.type]">
