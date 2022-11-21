@@ -1,44 +1,56 @@
+
 <template>
   <div class="group">
       <h2>1depth Title</h2>
 
-      <div>{{ iaKeys[0] }}</div>
+      공통경로 : <input type="text" v-model="this.commonURL">
       <table>
         <colgroup>
-            <col v-for="(iaKey) in iaKeys" :key="iaKey" :class="`col-${iaKey}`" />
+            <col v-for="(iaKey) in iaKeys" :key="iaKey" :class="`col__${iaKey.replace(/\s/g, '-')}`" />
         </colgroup>
         <thead>
           <tr>
-            <th v-for="(iaKey) in iaKeys" :key="iaKey" :class="`col-${iaKey}`">{{ iaKey }}</th>
+            <th v-for="(iaKey) in iaKeys" :key="iaKey" :class="`col__${iaKey.replace(/\s/g, '-')}`">
+              <span v-if="iaKey == 'worklist-path'">path</span>
+              <span v-else-if="iaKey == 'worklist-note'">비고</span>
+              <span v-else>{{ iaKey }}</span>
+            </th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(iaValList, idx) in ia" :key="idx">
+          <tr v-for="(iaValList, i) in iaList" :key="`${iaValList}-${i}`">
             <td 
-              v-for="(iaVal, title) in iaValList" 
-              :key="`${iaVal}-${idx}`" 
-              :class="`col-${title}`"
+              v-for="(iaVal, title, idx) in iaValList" 
+              :key="`${title}-${iaVal}`" 
+              :class="`col__${title.replace(/\s/g, '-')}`"
             >
-              <!-- ID -->
-              <a 
-                v-if="title == 'ID'" 
-                :href="`${iaValList.path}${iaVal}`" 
-                target="_blank" 
-                @mouseenter="previewLink(`${iaValList.path}${iaVal}`, $event)" 
+              <div v-if="title == 'worklist-path'"
+                @mouseenter="previewLink(`${this.commonURL}${iaValList['worklist-path']}`, $event)" 
                 @mouseleave="previewReset($event)"
-              >{{ iaVal }}</a>
-              
-              <!-- memo textarea -->
+              >
+                <!-- '링크수정'버튼 클릭시 input-a toggle -->
+                <input type="text" 
+                  v-if="iaValList['state']=='modi'" 
+                  :value="iaVal"
+                  @blur="updatePath(iaValList, $event.target)">
+                <a
+                  v-else
+                  :href="`${this.commonURL}${iaValList['worklist-path']}`" 
+                  target="_blank" 
+                >{{iaVal}}</a>
+                <button type="button" 
+                  v-if="iaValList['state']!='modi'" 
+                  @click="pathModi(iaValList)"
+                  >링크수정</button>
+              </div>
               <textarea 
-                v-else-if="title == 'info'" 
-                class="memo" 
+                v-else-if="title == 'worklist-note'"
+                class="note" 
                 rows="1" 
-                @keyup="updateMemo(iaValList,$event.target.value)" 
-                :value="iaVal"
-              ></textarea>
-              
-              <!-- else -->
-              <span v-else> {{ iaVal }}</span>
+                @focus="activeMemo($event.target)"
+                @blur="updateMemo(iaValList,$event.target)" 
+                :value="iaVal"></textarea>
+              <span v-else>{{iaVal}}</span>
             </td>
           </tr>
         </tbody>
@@ -48,76 +60,72 @@
 
 <script>
 
+const fs = require('fs');
 export default {
   name: 'group',
   props:{
-    ia : Array,
-    iaKeys: Array
+    iaList : Array,
   },
   data (){
     return {
-      selectedIA : {
-        "lvl1":"",
-        "lvl2":"",
-        "lvl3":"",
-        "lvl4":"",
-        "description":"",
-        "path":"",
-        "ID":"",
-        "released":"",
-        "modified":"",
-        "info":""
-      }
+      iaKeys: Object.keys(this.iaList[0]),
+      commonURL:'localhost:8080/html'
     }
   },
   components: {},
   methods: {
     previewLink : function (link,event){
       let el = event.target
-      const node = document.createElement('iframe')
-      node.src=`${link}.html`;
-      node.width=1240;
-      node.height=1500;
-      node.setAttribute('class','sitemapIframe');
-      el.appendChild(node);
+      const iframe = document.createElement('iframe')
+      iframe.src=`${link}.html`;
+      iframe.width=1240;
+      iframe.height=1500;
+      iframe.setAttribute('class','sitemapIframe');
+      el.appendChild(iframe);
     },
     previewReset : function(event){
       let el = event.target;
       el.querySelector('.sitemapIframe').remove();
     },
-    updateMemo: function(data,val){
-        this.selectedIA.lvl1 = data.lvl1;
-        this.selectedIA.lvl2 = data.lvl2;
-        this.selectedIA.lvl3 = data.lvl3;
-        this.selectedIA.lvl4 = data.lvl4;
-        this.selectedIA.description = data.description;
-        this.selectedIA.path = data.path;
-        this.selectedIA.ID = data.ID;
-        this.selectedIA.released = data.released;
-        this.selectedIA.modified = data.modified;
-        this.selectedIA.info = val;
-      
-      console.log(this.selectedIA)
-      
-      this.$store.dispatch('modiIA',this.selectedIA)
+    activeMemo: function(target){
+    },
+    updateMemo: function(data,target){
+      this.iaList.filter(id => {
+        if(id["SCREEN ID"]==data["SCREEN ID"]) {
+          id['worklist-note'] = target.value;
+        }
+      });
+      // fs.writeFileSync('./src/assets/ia-json.json',this.iaList)
+    },
+    updatePath: function(data,target){
+      this.iaList.filter(id => {
+        if(id["SCREEN ID"]==data["SCREEN ID"]) {
+          id['worklist-path'] = target.value;
+          id['state'] = '';
+        }
+      });
+      // fs.writeFileSync('./src/assets/ia-json.json',this.iaList)
     },
     deleteIA : function(IAID){
       this.$store.dispatch('delIA',IAID)   
+    },
+    pathModi : function(row){
+      row['state'] = 'modi';
     }
   }
 }
 </script>
 
 <style lang="scss">
-    .col-no {}
-    .col-lvl1 ,
-    .col-lvl2 ,
-    .col-lvl3 ,
-    .col-lvl4 {width:10%}
-    .col-description {width:20%}
-    .col-folder {width:150px}
-    .col-ID {width:150px}
-    .col-released {width:60px}
-    .col-modified {width:60px}
-    .col-info {}
+  .col__worklist-path {
+    div {
+      display: flex;
+    }
+    input {
+      flex:1
+    }
+  }
+  .note {
+    border:none
+  }
 </style>

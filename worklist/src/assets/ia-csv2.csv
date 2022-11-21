@@ -1,0 +1,13 @@
+1depth,2~5depth,페이지명칭,TYPE,SCREEN ID,Path,Released,Modified,비고
+뷰티피드 메인(overview),,,PAGE,APMO-BG1000,,,,
+메인,핫 플레이어 ,,PAGE,APMO-BG1001,,,,
+메인,팔로잉 플레이어,,PAGE,APMO-BG1002,,,,
+메인,활동뱃지 팝업,,POPUP,APMO-BG1003,,,,
+메인,피드 리스트,,PAGE,APMO-BG1004,,,,
+상세,피드 상세페이지>댓글 작성,,PAGE,APMO-BG1101,,,,
+검색,검색>닉네임 검색,,PAGE,APMO-BG2200,,,,
+프로필,마이 프로필>피드,,PAGE,APMO-BG3000,,,,
+프로필,마이 프로필>스크랩,,PAGE,APMO-BG3001,,,,
+프로필,다른 사용자 프로필,,PAGE,APMO-BG3100,,,,
+프로필(타인),프로필>팔로워 리스트,,PAGE,APMO-BG3120,,,,
+프로필(타인),프로필>팔로잉리스트,,PAGE,APMO-BG3121,,,,
