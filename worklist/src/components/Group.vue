@@ -4,11 +4,11 @@
 
       <table>
         <colgroup>
-            <col v-for="(iaKey) in iaKeys" :key="iaKey" :class="`col__${iaKey.replace(/\s/g, '-')}`" />
+            <col v-for="(iaKey) in iaKeys" :class="`col__${iaKey.replace(/\s/g, '-')}`" />
         </colgroup>
         <thead>
           <tr>
-            <th v-for="(iaKey) in iaKeys" :key="iaKey" :class="`col__${iaKey.replace(/\s/g, '-')}`">
+            <th v-for="(iaKey) in iaKeys" :class="`col__${iaKey.replace(/\s/g, '-')}`">
               <span v-if="iaKey == 'worklist-status'">상태</span>
               <span v-else-if="iaKey == 'worklist-path'">path</span>
               <span v-else-if="iaKey == 'worklist-note'">비고</span>
@@ -17,27 +17,29 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(iaValList, i) in iaGroup" 
-            :key="`${iaValList}-${i}`" 
-            :class="`status__badge status__badge--${iaValList['worklist-status']}`"
+          <tr v-for="(iaValList) in iaGroup" 
+            :class="`status--${iaValList['worklist-status']}`"
             v-show="iaValList['worklist-status'] == this.sort || this.sort=='total'">
             <td 
-              v-for="(iaVal, title, idx) in iaValList" 
-              :key="`${title}-${iaVal}`" 
+              v-for="(iaVal, title) in iaValList" 
               :class="`col__${title.replace(/\s/g, '-')}`"
             >
               <div v-if="title == 'worklist-status'">
-                <select name="" id="" @change="updateStatus(iaValList,$event.target)">
+                <select name="" id="" class="group__select" @change="updateStatus(iaValList,$event.target)" v-if="isModify">
                   <option value="stay" :selected="iaValList['worklist-status'] == 'stay'">대기</option>
                   <option value="ing" :selected="iaValList['worklist-status'] == 'ing'">진행중</option>
+                  <option value="equal" :selected="iaValList['worklist-status'] == 'equal'">동일</option>
                   <option value="complete" :selected="iaValList['worklist-status'] == 'complete'">완료</option>
                   <option value="del" :selected="iaValList['worklist-status'] == 'del'">제외</option>
                 </select>
+                <span v-else class="status__badge">
+                  {{this.statusRename(iaVal)}}
+                </span>
               </div>
-              <div v-else-if="title == 'worklist-path'">
+              <div v-else-if="title == 'worklist-path'" class="group__path">
                 <!-- '링크수정'버튼 클릭시 input-a toggle -->
                 <input type="text" 
-                  v-if="iaValList['mode']=='modi'" 
+                  v-if="isModify" 
                   :value="iaVal"
                   @blur="updatePath(iaValList, $event.target)">
                 <a v-else
@@ -45,19 +47,18 @@
                   target="_blank" 
                   @mouseenter="previewLink(`${commonURL}${iaValList['worklist-path']}`, $event)" 
                   @mouseleave="previewReset($event)">{{iaVal}}</a>
-                <button type="button" 
-                  v-if="iaValList['mode']!='modi'" 
-                  @click="pathModi(iaValList)"
-                  >링크수정</button>
+                  <!-- <button type="button" @click.prevent="previewPopup(`${commonURL}${iaValList['worklist-path']}`, iaValList)">미리보기</button> -->
               </div>
-              <textarea 
-                v-else-if="title == 'worklist-note'"
-                class="note" 
-                rows="1" 
-                @focus="activeMemo($event.target)"
-                @blur="updateMemo(iaValList,$event.target)" 
-                :value="iaVal">
-              </textarea>
+              <div v-else-if="title == 'worklist-note'">
+                <textarea 
+                  v-if="isModify"
+                  class="note" 
+                  rows="1" 
+                  @blur="updateMemo(iaValList,$event.target)" 
+                  :value="iaVal">
+                </textarea>
+                <span v-else>{{iaVal}}</span>
+              </div>
               <span v-else>{{iaVal}}</span>
             </td>
           </tr>
@@ -67,11 +68,10 @@
 </template>
 
 <script>
-
-const fs = require('fs');
 export default {
   name: 'group',
   props:{
+    isModify : Boolean,
     iaList : Object,
     idx: Number,
     commonURL:String,
@@ -83,16 +83,16 @@ export default {
       iaKeys: this.$store.state.iaKeys,
     }
   },
-  components: {},
+  components: {
+  },
   methods: {
     sendNewIA : function(data){
       this.$store.dispatch('modiIA', data)
-      // fs.writeFileSync('./src/assets/ia-json.json',this.iaList)
     },
     previewLink : function (link,event){
-      let el = event.target
+      const el = event.target
       const iframe = document.createElement('iframe')
-      iframe.src=`${link}.html`;
+      iframe.src=`${link}`;
       iframe.width=1240;
       iframe.height=1500;
       iframe.setAttribute('class','sitemapIframe');
@@ -102,17 +102,12 @@ export default {
       let el = event.target;
       el.querySelector('.sitemapIframe').remove();
     },
-    activeMemo: function(target){
-    },
     updateMemo: function(data,target){
       let list = data;
       list['worklist-note'] = target.value;
       this.sendNewIA(list);
     },
     updatePath: function(data,target){
-      this.iaGroup.filter(id => {
-        if(id["SCREEN ID"]==data["SCREEN ID"]) id['mode'] = '';
-      });
       let row = data;
       row['worklist-path'] = target.value;
       this.sendNewIA(row);
@@ -120,101 +115,32 @@ export default {
     deleteIA : function(IAID){
       this.$store.dispatch('delIA',IAID)   
     },
-    pathModi : function(row){
-      row['mode'] = 'modi';
-    },
     updateStatus : function(data,target){
       let row = data;
       row['worklist-status'] = target.value;
       this.sendNewIA(row);
+    },
+    statusRename : function(status){
+      switch(status){
+        case 'stay' : return "대기";
+        break;
+        case 'ing' : return "진행중";
+        break;
+        case 'complete' : return "완료";
+        break;
+        case 'del' : return "제외";
+        break;
+        case 'equal' : return "동일";
+        break;
+        default : return '대기'
+      }
+    },
+    previewPopup : function(link, list){
+      this.$emit('setPreview',{list, link});
     }
   }
 }
 </script>
 
 <style lang="scss">
-  .col__worklist-path {
-    div {
-      display: flex;
-    }
-    input {
-      flex:1
-    }
-  }
-  .note {
-    border:none
-  }
-  .group {
-      margin-top: 30px;
-      
-      &Title {
-        margin: 50px 0 10px 0;
-      }
-
-      table {
-          width: 100%;
-          th, td {
-              padding:3px;
-              font-size: 12px;
-              line-height:1.3em;
-              border:1px solid #d0d0d0;
-              vertical-align: middle;
-          }
-      }
-      thead {
-          th {
-              border-color:#aaa;
-              background: #e5e5e5;
-          }
-      }
-      tr {
-          &:hover {
-            position: relative;
-            box-shadow: 0px 0px 8px rgba(#000,.3);
-          }
-      }
-      
-  }
-  .col__worklist-path {
-      position: relative;
-      a {
-          color: darken($pointColor, 20%);
-          text-decoration: none;
-          text-underline-position: under;
-          &:hover {
-              color: darken($color:$pointColor, $amount:0);
-              text-decoration: underline;
-          }
-      }
-  }
-  .sitemapIframe{
-      position: absolute;
-      top:-300px - 1px;
-      left:calc(50% - 124px);
-      z-index: 1;
-      transform:scale(0.2);transform-origin: left top;
-      background-color: #fff;
-      box-shadow: 0 0 30px rgba(0,0,0,.2);
-  }
-  .memo {
-      resize: vertical;
-      border:1px solid #eee;
-      min-height: 20px;
-      box-sizing: border-box;
-      vertical-align: top;
-      &:focus {
-          border-color:$pointColor;
-          outline:none;
-      }
-  }
-  .status{
-    position: relative;
-    &__badge {
-
-      &--stay {}
-      &--ing {background: hotpink;}
-      &--complete {background: skyblue;}
-      &--del {color: #aaa;}
-    }
-  }
 </style>

@@ -1,72 +1,86 @@
 body {
     margin: 0 auto;
-    padding: 30px;
     // min-width: 1000px;
     box-sizing: border-box;
     font-family: sans-serif;
+    // background: $greyish1;
+    background: #fff;
 }
-.status {
-    border: 1px solid #000;
-}
-.tab {
-    border: 1px solid #000;
-}
-.group {
-    margin-top: 30px;
-
-    table {
-        width: 100%;
-        th, td {
-            padding:3px;
-            font-size: 12px;
-            line-height:1.3em;
-            border:1px solid #d0d0d0;
-            vertical-align: middle;
-        }
-    }
-    thead {
-        th {
-            border-color:#aaa;
-            background: #e5e5e5;
-        }
-    }
-    tr {
-        &:hover {
-            background: lighten($color: $pointColor, $amount: 50%);
-            box-shadow: inset 0px 0px 5px rgba($pointColor,.5);
-        }
-    }
-    
-}
-.col-ID {
-    position: relative;
-    a {
-        color: darken($pointColor, 20%);
-        text-decoration: none;
-        text-underline-position: under;
-        &:hover {
-            color: darken($color:$pointColor, $amount:0);
-            text-decoration: underline;
-        }
-    }
-}
-.sitemapIframe{
-    position: absolute;
-    top:-300px - 1px;
-    left:calc(50% - 124px);
+.header {
+    position: sticky;
+    top:0;
+    left:0;
     z-index: 1;
-    transform:scale(0.2);transform-origin: left top;
-    background-color: #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,.2);
-}
-.memo {
-    resize: vertical;
-    border:1px solid #eee;
-    min-height: 20px;
-    box-sizing: border-box;
-    vertical-align: top;
-    &:focus {
-        border-color:$pointColor;
-        outline:none;
+    width: 100%;
+    padding: $commSidePadding $commSidePadding 0 $commSidePadding;
+    // background: $pointColor;
+    border-bottom: 1px solid $pointColor;
+    background: rgba($greyish1 , .5);
+    backdrop-filter: blur(8px);
+
+    &__function {
+        margin: 10px 0;
+    }
+    &__commPath {
+        display: inline-block;
+        input {
+            padding: 5px 10px;
+            height: 30px;
+            width: 500px;
+
+            &:focus {
+                border-color: $pointColor;
+                outline: none;
+            }
+        }
+    }
+    &__toggleMode {
+        display: inline-block;
+        margin-right: 20px;
+        border-radius: 5px;
+        background: $subColor;
+        label {
+            display: inline-block;
+            cursor: pointer;
+        }
+        input {
+            width: 0; height: 0;
+
+            &:checked + .header__toggleModeText {
+                color: $pointColor;
+                font-weight: 500;
+                box-shadow: 0 0 5px rgba($pointColor,.2);
+                background: #fff;
+            }
+            &:not(:checked):hover {
+                + .header__toggleModeText {
+                    color: #000;
+                }
+            }
+        }
+        &Text {
+            display: inline-block;
+            margin: 3px;
+            padding: 3px 15px;
+            border-radius: 5px;
+            font-size: 13px;
+            color: #777;
+            background: $subColor;
+        }
     }
 }
+.content {
+    padding: 0 $commSidePadding;
+}
+
+
+// table width
+[class^="col__"] {width:auto }
+.col__worklist-status {width:80px}
+.col__1depth {}
+.col__TYPE {width:80px;}
+.col__SCREEN-ID {width:100px; text-align: center;}
+.col__Released,
+.col__Modified {width: 80px;}
+.col__worklist-path {width:14%}
+.col__worklist-note {width:14%;}

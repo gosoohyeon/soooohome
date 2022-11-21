@@ -1,40 +1,271 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+@charset "utf-8";
+/* Reset SCSS */
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-    margin: 0;
-    padding: 0;
+/* HTML Default */
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+article,
+aside,
+hgroup,
+header,
+footer,
+figure,
+figcaption,
+nav,
+section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  box-sizing: border-box;
+  // font-weight: normal;
+  //line-height: normal;
+  //line-height: 1.4;
+}
+html,
+body {
+  font-size: 14px;
+  line-height: 1.4;
+  // font-family 변수 필요
+  font-family: "Apple SD Gothic Neo", "Roboto", -apple-system, Segoe UI,
+    Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-weight: normal;
+}
+strong {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  //font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  box-sizing: border-box;
+}
+article,
+aside,
+header,
+footer,
+figure,
+figcaption,
+nav,
+section,
+div,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+  display: block;
+}
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  word-break: break-all;
+  -ms-word-break: break-all;
+}
+/*h1, h2, h3, h4, h5, h6 {font-weight: bold;}*/
+ol,
+ul,
+li {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  width: 100%;
+  colgroup {
+  }
+  tbody {
+    tr {
+      vertical-align: top;
+      td {
+      }
+    }
+  }
+}
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  overflow: visible;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #666;
+  vertical-align: baseline;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+legend,
+caption {
+  display: none;
+}
+img {
+  border: 0;
+  vertical-align: middle;
+}
+address,
+i,
+em {
+  font-style: normal;
+}
+
+/* form */
+textarea {
+  resize: vertical;
+  font: inherit;
+  overflow-y: auto;
+  //그림자 제거
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+input,
+select,
+optgroup {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  vertical-align: middle;
+  line-height: normal;
+}
+button,
+select {
+  text-transform: none;
+}
+
+button,
+input {
+  &:disabled {
+    cursor: default;
+  }
+  &::-moz-focus-inner {
     border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline; }
-  
-  /* HTML5 display-role reset for older browsers */
-  
-  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-    display: block; }
-  
-  body {
-    line-height: 1; }
-  
-  ol, ul {
-    list-style: none; }
-  
-  blockquote, q {
-    quotes: none; }
-  
-  blockquote {
-    &:before, &:after {
-      content: '';
-      content: none; } }
-  
-  q {
-    &:before, &:after {
-      content: '';
-      content: none; } }
-  
-  table {
-    border-collapse: collapse;
-    border-spacing: 0; }
+    padding: 0;
+  }
+}
+
+input {
+  &[type="search"] {
+    -webkit-appearance: none;
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration,
+    &::-ms-clear {
+      display: none;
+    }
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+  }
+  &[type="number"]::-webkit-inner-spin-button {
+    height: auto;
+    -webkit-appearance: none;
+  }
+  &[type="checkbox"],
+  &[type="radio"] {
+    padding: 0;
+    box-sizing: border-box;
+  }
+  &[type="button"],
+  &[type="reset"],
+  &[type="submit"] {
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+}
+input[type="text"], textarea{
+  padding: 3px;
+  min-height: 24px;
+  border:1px solid $subColor;
+  vertical-align: middle;
+}

@@ -8,7 +8,7 @@ $defLineHeight : 1.5em;
 $fontfamily: '맑은 고딕',Helvetica,sans-serif !default;
 
 // 공통 좌우 패딩
-$commSidePadding : rem(32);
+$commSidePadding : 30px;
 
 // 공통 하단여백
 $pageBottomMargin : 180px;
@@ -23,13 +23,19 @@ $pcSize : 1180px;
 
 
 // color
-$pointColor : #22b87a;;
+$pointColor : #405289;
 $dangerColor : #ff0025;
+$subColor : #e3e4e9;
 
-$darkColor : #999999;
-$greyish1 : #8e8e8e;
+$darkColor : #eee;
+$greyish1 : #f4f5f7;
 
-$placeholder : $greyish1;
+$status-stay :transparent;
+$status-ing :#f2f8ff;
+$status-complete : #f3fef2;
+$status-equal : #fcfcd6;
+$status-del :#aaa;
+
 
 .pointColor { color:$pointColor !important; }
 .redColor {color:$dangerColor !important;}

@@ -1,0 +1,193 @@
+
+.col__worklist-path {
+    div {
+      display: flex;
+    }
+    input {
+      flex:1
+    }
+  }
+  .note {
+    width: 100%;
+  }
+  .group {
+      margin-bottom: 30px;
+      
+      &Title {
+        padding: 30px 0 10px 0;
+        // color: $pointColor;
+        color: #555;
+        font-weight: bold;
+        font-size: 15px;
+      }
+  
+      table {
+          th, td {
+              padding:5px 3px;
+              font-size: 12px;
+              line-height:1.3em;
+              // border:1px solid #d0d0d0;
+              vertical-align: middle;
+              // border-bottom: thin solid rgba(0,0,0,.12);
+              border-bottom: thin solid rgba(#a6b3dd , .2);
+              &:not(:first-child){
+              }
+          }
+      }
+      thead {
+          th {
+              border-style: solid;
+              border-color: $darkColor;
+              // border-width: 1px 0 1px 0;
+              border-width: 0 0 1px 0;
+              padding-top:10px;
+              padding-bottom: 10px;
+              color: $pointColor;
+              font-size: 12px;
+              line-height: 1;
+              font-weight: 700;
+              background: rgba(#a6b3dd , .2);
+              &:not(:first-child){
+                position: relative;
+                &:before {
+                  content:'';
+                  display: inline-block;
+                  position: absolute;
+                  top:calc(50% - 5px);
+                  left:0;
+                  height: 10px;
+                  border-left: 1px solid rgba(#a6b3dd , .8);
+                }
+              }
+          }
+      }
+      tbody {
+        color: #000;
+        tr {
+            &:hover {
+              position: relative;
+              background: $greyish1;
+            }
+        }
+        .col__worklist-status {
+          text-align: center;
+        }
+      }
+    &__select {
+      padding: 1px 0 1px 3px;
+      font-size: 12px;
+      border: 1px solid $subColor;
+      border-radius: 12px;
+      background: transparent;
+      box-shadow: none;
+      transition: box-shadow .3s;
+  
+      &:hover {
+        border-color:lighten(#000,70%);
+        box-shadow: 0 1px 5px rgba(0,0,0,.1);
+      }
+      &:focus {
+        outline:none;
+      }
+      .status--stay &{
+        border-color:darken($status-stay,30%);
+        background-color:$status-stay;
+      }
+      .status--ing &{
+        border-color:darken($status-ing,30%);
+        background-color:$status-ing
+      }
+      .status--complete &{
+        border-color:darken($status-complete,30%);
+        background-color:$status-complete
+      }
+      .status--equal &{
+        border-color:darken($status-equal,30%);
+        background-color:$status-equal
+      }
+      .status--del &{
+        border-color:lighten($status-del,5%);
+        // background-color:$status-del
+      }
+    }
+    &__path {
+      display: flex;
+      &Btn {
+        margin-left: auto;
+      }
+    }
+  }
+  .col__worklist-path {
+      position: relative;
+      a {
+          color: darken($pointColor, 20%);
+          text-decoration: none;
+          text-underline-position: under;
+          &:hover {
+              color: darken($color:$pointColor, $amount:0);
+              text-decoration: underline;
+          }
+      }
+  }
+  .sitemapIframe{
+      position: absolute;
+      top:-300px - 1px;
+      left:calc(50% - 124px);
+      z-index: 1;
+      transform:scale(0.2);transform-origin: left top;
+      background-color: #fff;
+      box-shadow: 0 0 30px rgba(0,0,0,.2);
+  }
+  .memo {
+      resize: vertical;
+      border:1px solid #eee;
+      min-height: 20px;
+      box-sizing: border-box;
+      vertical-align: top;
+      &:focus {
+          border-color:$pointColor;
+          outline:none;
+      }
+  }
+  .status{
+    position: relative;
+    // &--stay {background: $status-stay;}
+    // &--ing {background: $status-ing;}
+    // &--complete {background: $status-complete;}
+    &--del {
+      color: $status-del;
+      background-color: lighten($status-del,30);
+    }
+    
+    &__badge {
+      display: inline-block;
+      padding: 3px 3px;
+      min-width: 45px;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 11px;
+      line-height: 1em;
+      border: 1px solid transparent;
+  
+      .status--stay & {
+        border-color:darken($status-stay,30);
+        background: $status-stay;
+      }
+      .status--ing & {
+        border-color:darken($status-ing,30);
+        background: $status-ing;
+      }
+      .status--complete & {
+        border-color:darken($status-complete,30);
+        background: $status-complete;
+      }
+      .status--equal & {
+        border-color:darken($status-equal,30);
+        background: $status-equal;
+      }
+      .status--del & {
+        // border-color:darken($status-del,30);
+        color: $status-del;
+      }
+    }
+  }

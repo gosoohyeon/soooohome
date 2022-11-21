@@ -1,0 +1,38 @@
+
+.tab {
+    display: flex;
+    margin-top: 20px;
+    width:100%;
+  
+    &__item {
+        position: relative;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        white-space: nowrap;
+        cursor: pointer;
+        // background: $subColor;
+        border-bottom:2px solid transparent;
+        transition: background .3s, color .3s;
+  
+        &:hover {
+          color: $pointColor;
+        }
+        &.is-active {
+          color: $pointColor;
+          border-color: $pointColor;
+          // background: $pointColor;
+  
+          &:after {
+            content:'';
+            display: inline-block;
+            position: absolute;
+            bottom:-8px;
+            left:calc(50% - 5px);
+            border-top: 5px solid $pointColor;
+            border-bottom: none;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+          }
+        }
+    }
+  }

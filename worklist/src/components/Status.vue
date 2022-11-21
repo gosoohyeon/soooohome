@@ -1,11 +1,33 @@
 <template>
   <div class="status">
-      진행률 {{percent}}%
-      <button type="button" @click="sortList('complete')">완료 : {{countComplete}}</button>
-      <button type="button" @click="sortList('del')"> 제외 : {{countDel}}</button>
-      <button type="button" @click="sortList('total')"> total : {{total}}</button>
+    <div class="status__btnBox">
+      <button type="button" 
+        :class="{'is-active':activeStatusBtn == 'complete'}" 
+        @click="sortList('complete')"
+        >완료 : {{countComplete}}</button>
+  
+      <button type="button" 
+        :class="{'is-active':activeStatusBtn == 'del'}" 
+        @click="sortList('del')"
+        > 제외 : {{countDel}}</button>
 
-      <div class="progressBar"><span :style="`width:${Math.floor(percent)}%`"></span></div>
+      <button type="button" 
+        :class="{'is-active':activeStatusBtn == 'equal'}" 
+        @click="sortList('equal')"
+        > 동일 : {{countEqual}}</button>
+  
+      <button type="button" 
+        :class="{'is-active':activeStatusBtn == 'total'}" 
+        @click="sortList('total')"
+        > total : {{total}}</button>
+    </div>
+    
+      
+
+    <div class="progressBar">
+      <span class="progressBar__text">진행률 {{percent}}%</span>
+      <span class="progressBar__visual" :style="`width:${Math.floor(percent)}%`"></span>
+    </div>
   </div>
 </template>
 
@@ -14,6 +36,7 @@
 export default {
   name: 'status',
   props: {
+    activeStatusBtn:String
   },
   data(){
     return {
@@ -42,8 +65,13 @@ export default {
       })
       return list.length;
     },
+    countEqual:function(){
+      const list = this.iaList.filter((item)=>{
+        return item['worklist-status']=='equal'
+      })
+      return list.length;
+    },
     percent: function(){
-      console.log(this.total , this.countDel)
       const calc = (this.countComplete*100) / (this.total - this.countDel);
       return calc.toFixed(2);
     }

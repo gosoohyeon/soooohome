@@ -6,4 +6,10 @@
 @import './init/reset';
 
 // layout
-@import './layout/layout'
+@import './layout/layout';
+
+// components
+@import './components/group';
+@import './components/tab';
+@import './components/status';
+@import './components/preview';

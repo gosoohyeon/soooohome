@@ -27,42 +27,13 @@ export default {
   },
   methods:{
     quickMove : function(item){
-      const pos = document.getElementById(item).offsetTop - 80;
-      window.scrollTo(0,pos)
+      const pos = document.getElementById(item).offsetTop;
+      const headerHeight = document.getElementsByTagName('header')[0].offsetHeight;
+      window.scrollTo(0,pos-headerHeight)
     }
   }
 }
 </script>
 
 <style lang="scss">
-  .tab {
-    display: flex;
-    width:100%;
-
-    &__item {
-      position: relative;
-      padding: 10px;
-      box-sizing: border-box;
-      border:none;
-      white-space: nowrap;
-      cursor: pointer;
-
-      &:hover {
-        background: pink;
-      }
-
-      &:not(:first-child){
-        &:after {
-          content:'';
-          display: block;
-          position: absolute;
-          top:calc(50% - 5px);
-          left:0;
-          width: 1px;
-          height: 10px;
-          background: #555;
-        }
-      }
-    }
-  }
 </style>
