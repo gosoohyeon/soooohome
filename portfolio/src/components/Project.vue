@@ -5,7 +5,6 @@
             v-for="(item, idx) in items" 
             :key="idx"
             v-bind:class="['card']"
-            @click.prevent="clickItem(idx)"
         >
             <div class="card__text">
                 <div class="card__badgeBox">
@@ -34,9 +33,6 @@ export default {
         items: { type: Array, default: () => [] }
     },
     methods: {
-        clickItem(idx){
-            this.$emit('@click',idx)
-        }
     }
 };
 </script>

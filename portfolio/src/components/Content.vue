@@ -8,7 +8,7 @@
 				<Project v-bind:items="contactlist" v-on:@click="handlePopup" /> 
 			</div>
 		</section>
-		<Modal v-bind:item="projectData[activeIdx]" v-on:@close="closePopup" v-if="isPopup"/>
+		
     </div>
 </template>
 
@@ -17,13 +17,11 @@
 	import pjData from '../assets/project.js';
 	import Menu from "./Menu";
 	import Project from "./Project";
-	import Modal from "./Modal";
 	export default {
     
 	components: {
 		Menu, 
 		Project,
-		Modal,
 	},
 	data(){
 		return {
