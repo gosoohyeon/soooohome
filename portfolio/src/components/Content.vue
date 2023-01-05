@@ -1,7 +1,7 @@
 /* eslint-disable */ 
 <template id="matchProject">
     <div>
-        <Menu v-on:search="searchEvent"/>
+        <Menu v-on:search="searchEvent" v-bind:nav="projectData" />
             
 		<section class="main">
 			<div class="main__inr">
@@ -43,7 +43,7 @@
 				this.contactlist = this.projectData;	
 			}else {
 				this.contactlist = this.projectData.filter((data) => {
-					return data.type == name
+					return data.type.indexOf(name) != -1
 				})
 			}
 		},

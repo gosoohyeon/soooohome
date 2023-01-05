@@ -2,7 +2,7 @@ export default [
 
     {
         top : 'card--top',
-        type:"study",
+        type:["study"],
         subject:"[Vue.js] worklist",
         desc : "vue로 작업현황을 확인,수정할수 있는 worklist",
         skill : "Vue, javascript, scss",
@@ -14,7 +14,7 @@ export default [
     },
     {
         top : 'card--top',
-        type:"study",
+        type:["study"],
         subject:"[React.js] calendar",
         desc : "리엑트로 스케줄을 관리할수 있는 달력",
         skill : "React, javascript, scss",
@@ -26,9 +26,9 @@ export default [
     },
     {
         top : 'card--top',
-        type:"pc",
+        type:["pc", "mobile"],
         subject:"[아모레몰] 커머스 커뮤니티",
-        desc : "React프로젝트로 nunjucs로 작업",
+        desc : "React프로젝트, nunjucs로 작업",
         skill : "Nunjucks, git, HTML, javascript, scss",
         part : "50",
         date : "2022.07 ~ 2022.11",
@@ -38,7 +38,7 @@ export default [
     },
     {
         top : 'card--top',
-        type:"pc",
+        type:["pc", "mobile"],
         subject:"[한국투자저축은행] PC, mobile 통합 구축",
         desc : "웹스퀘어를 이용하여 작업",
         skill : "WebSquar, HTML, jQuery, css",
@@ -50,7 +50,7 @@ export default [
     },
     {
         top : 'card--top',
-        type:"pc",
+        type:["back office"],
         subject:"[남양인터네셔널] 업무시스템 웹 표준화",
         desc : "업무시스템 웹 표준화",
         skill : "HTML, jQuery, css",
@@ -62,7 +62,7 @@ export default [
     },
     {
         top : 'card--top',
-        type:"pc",
+        type:["pc", "mobile"],
         subject:"[제로페이] 통합 플랫폼 구축",
         desc : "한국간편결제진흥원 pc, mobile 통합 플렛폼 데이터이관 프로젝트중 PC페이지 전담하여 진행",
         skill : "HTML, jQuery, SCSS, gulp",
@@ -74,9 +74,10 @@ export default [
     },
     {
         top : 'card--top',
-        type : "pc",
-        subject : "[유니스터디] 리뉴얼",
-        desc : "",
+        type : ["pc"],
+        subject : "[유니스터디] 구축",
+        desc : "온라인 강의 사이트 구축",
+        skill : "HTML, jQuery, SCSS, gulp",
         part : "100",
         date : "2020.11 ~ 2020.12",
         link : true,
@@ -85,9 +86,10 @@ export default [
     },
     {
         top : 'card--top',
-        type : "pc",
-        subject : "[인터엠디] 의사전용 지식공유 서비스 운영",
-        desc : "",
+        type : ["pc", "mobile"],
+        subject : "[인터엠디] 의사전용 지식공유 서비스 구축 및 운영",
+        desc : "post, poll, webinar등 서비스 구축 및 운영",
+        skill : "HTML, jQuery, SCSS, gulp",
         part : "100",
         date : "2018.06 ~ 2021.04",
         link : true,
@@ -95,28 +97,21 @@ export default [
         imgsrc : 'intermd_pc.png'
     },
     {
-        top : 'card--top',
-        type : "mobile",
-        subject : "[인터엠디] 의사전용 지식공유 서비스 구축.운영",
-        desc : "",
-        part : "100",
-        date : "2018.06 ~ 2021.04",
-        link : false,
-        url : "",
-        imgsrc : 'intermd_m.png'
-    },
-    {
-        type:"rwd",
+        type:["rwd"],
         subject:"[웨비나] 웹 세미나 제공 페이지 구축",
         part:"100",
+        desc : "실시간 웹 세비나 서비스 구축",
+        skill : "HTML, jQuery, SCSS, gulp",
         date:"2020.02",
         link:false,
         url:"",
         imgsrc : 'webinar.png'
     },
     {
-        type:"mobile",
+        type:["mobile", "pc"],
         subject:"[곰TV] 영화보곰",
+        desc: "영화 리뷰 서비스 구축",
+        skill : "HTML, jQuery, SCSS, gulp",
         part:"100",
         date:"2018.06",
         link:false,
@@ -124,26 +119,21 @@ export default [
         imgsrc : 'bogom_m.png'
     },
     {
-        type:"pc",
-        subject:"[곰TV] 영화보곰",
-        part:"100",
-        date:"2018.06",
-        link:false,
-        url:"",
-        imgsrc : 'bogom_pc.png'
-    },
-    {
-        type:"pc",
+        type:["back office"],
         subject:"[VRiX] 동영상 광고삽입 시스템",
+        desc : "광고 삽입 및 관리 페이지 구축",
+        skill : "HTML, jQuery, SCSS, gulp",
         part:"100",
         date:"2018.06",
-        link:false,
+        link:true,
         url:"http://gosh.dothome.co.kr/pf_src/vrix/html/00_index.html",
         imgsrc : 'vrix.jpg'
     },
     {
-        type:"etc",
+        type:["study"],
         subject:"[도미네이션 게임 시뮬레이터] 커스터마이징",
+        desc : "게임 전략 시뮬레이션 제작",
+        skill : "HTML, jQuery, SCSS",
         part:"100",
         date:"2015.10",
         link:true,
@@ -151,8 +141,10 @@ export default [
         imgsrc : 'domi.jpg'
     },
     {
-        type:"mobile",
+        type:["mobile"],
         subject:"[purple] 커플 채팅 하이브리드 앱 구축",
+        desc : "채팅화면 구축",
+        skill : "HTML, jQuery, SCSS",
         part:"100",
         date:"2015.11",
         link:false,
@@ -160,26 +152,21 @@ export default [
         imgsrc : 'purple.png'
     },
     {
-        type:"pc",
-        subject:"[곰 오디오] 싱크가사 구현",
-        part:"100",
-        date:"2015.11",
-        link:false,
-        url:"",
-        imgsrc : 'gomaudio.png'
-    },
-    {
-        type:"rwd",
+        type:["rwd"],
         subject:"[KOCOWA] 글로벌 한류 컨텐츠 서비스 구축",
+        desc : "동영상 플랫폼 구축",
+        skill : "HTML, jQuery, SCSS, gulp",
         part:"100",
         date:"2016.09",
-        link:true,
+        link:false,
         url:"http://www.kocowa.jp/",
         imgsrc : 'kocowa.jpg'
     },
     {
-        type:"promotion",
+        type:["promotion"],
         subject:"[베네피트 BigEasy] BigEasy 상품출시 홍보 페이지",
+        desc : "저글링 소녀에 mouse over시 저글링을 시작하는 인터렉션 에니메이션 페이지 구축",
+        skill : "HTML, jQuery, SCSS, gulp",
         part:"100",
         date:"2014.03",
         link:true,
@@ -187,21 +174,14 @@ export default [
         imgsrc : 'bigeasy.png'
     },
     {
-        type:"pc",
+        type:["pc"],
         subject:"[코레일] 웹서비스 개편",
+        desc : "코레일 웹 서비스 구축",
+        skill : "HTML, jQuery, CSS",
         part:"30",
         date:"2013.10",
-        link:true,
+        link:false,
         url:"http://www.letskorail.com/",
         imgsrc : 'korail.png'
-    },
-    {
-        type:"pc",
-        subject:"[충북나드리] 충청북도 관광정보 웹서비스 구축",
-        part:"30",
-        date:"2011.08",
-        link:true,
-        url:"https://tour.chungbuk.go.kr/www/index.do",
-        imgsrc : 'nadri.jpg'
-    },
+    }
 ]
