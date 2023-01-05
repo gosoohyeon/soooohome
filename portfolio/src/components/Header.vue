@@ -3,7 +3,7 @@
     <header class="header">
         <div class="header__inr">
             <div class="header__cont">
-                <h1 :style="{ backgroundImage:`url('${require('../assets/images/jeju.png')}')`}">
+                <h1>
                     <span class="header__cont--text1">GO-SOOHYEON</span> 
                     UI developer
                 </h1>
