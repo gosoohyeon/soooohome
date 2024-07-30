@@ -9,7 +9,7 @@ export default [
         part : "100",
         date : "2022.11",
         link : true,
-        url : "http://gosh.dothome.co.kr/worklist/",
+        url : "https://gosoooo.notion.site/Vue-js-worklist-f387f2c659ec4c909222f73ce37a8029",
         imgsrc : ''
     },
     {
@@ -21,7 +21,19 @@ export default [
         part : "100",
         date : "2020.12",
         link : true,
-        url : "http://gosh.dothome.co.kr/calendar/",
+        url : "https://gosoooo.notion.site/React-023ce01bd9f34e68abf2315f7fc5e0c5",
+        imgsrc : ''
+    },
+    {
+        top : 'card--top',
+        type:["rwd"],
+        subject:"[LG.com] 글로벌 페이지",
+        desc : "pug로 작업",
+        skill : "PUG, git, HTML, javascript, scss",
+        part : "30",
+        date : "2023.01 ~ 2023.06",
+        link : false,
+        url : "",
         imgsrc : ''
     },
     {
@@ -125,8 +137,8 @@ export default [
         skill : "HTML, jQuery, SCSS, gulp",
         part:"100",
         date:"2018.06",
-        link:true,
-        url:"http://gosh.dothome.co.kr/pf_src/vrix/html/00_index.html",
+        link:false,
+        url:"",
         imgsrc : 'vrix.jpg'
     },
     {
@@ -137,7 +149,7 @@ export default [
         part:"100",
         date:"2015.10",
         link:true,
-        url:"http://gosh.dothome.co.kr/pf_src/domi/builder.html",
+        url:"https://gosoooo.notion.site/e910291fe4b24964ac8321aed47139dd",
         imgsrc : 'domi.jpg'
     },
     {
@@ -170,7 +182,7 @@ export default [
         part:"100",
         date:"2014.03",
         link:true,
-        url:"http://gosh.dothome.co.kr/pf_src/bigeasy/201403bigEasy_animation.html",
+        url:"https://gosoooo.notion.site/e984d8e652a649179ed0f04a548a2d68",
         imgsrc : 'bigeasy.png'
     },
     {
